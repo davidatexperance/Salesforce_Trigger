@@ -1,0 +1,22 @@
+{
+  "orgName": "New Relic Test",
+  "edition": "Enterprise",
+  "hasSampleData": true,
+  "features": [
+    "EnableSetPasswordInApi",
+    "ServiceCloud",
+    "Entitlements",
+    "ServiceUser"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "caseSettings": {
+      "systemUserEmail": "david@experancepartners.com"
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
+}
