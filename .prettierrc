@@ -1,10 +1,14 @@
 {
+  "tabWidth": 4,
+  "useTabs": false,
+  "bracketSpacing": true,
   "trailingComma": "none",
+  "insertPragma": false,
+  "requirePragma": false,
+
   "overrides": [
-    {
-      "files": "**/lwc/**/*.html",
-      "options": { "parser": "lwc" }
-    },
+    { "files": "**/lwc/**/*.html", "options": { "parser": "lwc" } },
+    { "files": "**/*.cls", "options": { "parser": "apex" } },
     {
       "files": "*.{cmp,page,component}",
       "options": { "parser": "html" }
