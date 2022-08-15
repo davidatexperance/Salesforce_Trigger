@@ -1,5 +1,7 @@
 @istest
 public with sharing class Case_Case_UnitTests {
+    //TODO add simple action on the Case object and show system tests here
+    /**
     private static final Date OLD_SOLVE_DATE = System.today().addDays(-5);
 
     @IsTest
@@ -93,4 +95,5 @@ public with sharing class Case_Case_UnitTests {
             'Solved Date not set correctly'
         );
     }
+    **/
 }
