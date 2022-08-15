@@ -4,7 +4,7 @@
  *                      @copywrite 2022 Experance Partners, LLC
  * @author            : david@experancepartners.com
  * @group             :
- * @last modified on  : 04-11-2022
+ * @last modified on  : 08-15-2022
  * @last modified by  : david@experancepartners.com
  **/
 public with sharing class Util {
@@ -111,5 +111,34 @@ public with sharing class Util {
         }
 
         return returnList;
+    }
+
+    public static string boxTopBottom(String charactersForBox, integer size) {
+        size = Math.max(size, charactersForBox.length() * 2 + 2);
+        return charactersForBox.center(size, charactersForBox);
+    }
+
+    public static string boxEntryCentered(
+        String charactersForBox,
+        integer size,
+        String entry
+    ) {
+        size = size - charactersForBox.length() * 2;
+        size = Math.max(size, entry.length() + 2);
+        return charactersForBox + entry.center(size) + charactersForBox;
+    }
+
+    public static string boxSpace(String charactersForBox, integer size) {
+        return boxEntryCentered(charactersForBox, size, ' ');
+    }
+
+    public static string boxEntryLeft(
+        String charactersForBox,
+        integer size,
+        String entry
+    ) {
+        size = size - charactersForBox.length() * 2 - 1;
+        size = Math.max(size, 1);
+        return charactersForBox + ' ' + entry.rightPad(size) + charactersForBox;
     }
 }

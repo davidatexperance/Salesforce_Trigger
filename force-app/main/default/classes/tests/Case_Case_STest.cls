@@ -1,22 +1,24 @@
 @isTest
-/**
- *
- * @format
- * @description :  Case_Case System Tests
- * This class is created to show that with my trigger you can do both system and unit level
- * In production this class would run slower and could be used for comprehensive test runs,
- * but not part of a developer test runs
- * Not this test includes load testing, which would have to be modified in production because
- * CPU Limit issues
- *
- * @author : david@experancepartners.com
- * @group :
- * @last modified on  : 08-04-2022
- * @last modified by  : david@experancepartners.com
- *  * 1.0   08-03-2022   david@experancepartners.com   Initial Version
- *
- */
 public with sharing class Case_Case_STest {
+    /**
+     *
+     * @format
+     * @description :  Case_Case System Tests
+     * This class is created to show that with my trigger you can do both system and unit level
+     * In production this class would run slower and could be used for comprehensive test runs,
+     * but not part of a developer test runs
+     * Not this test includes load testing, which would have to be modified in production because
+     * CPU Limit issues
+     *
+     * @author : david@experancepartners.com
+     * @group :
+     * @last modified on  : 08-04-2022
+     * @last modified by  : david@experancepartners.com
+     *  * 1.0   08-03-2022   david@experancepartners.com   Initial Version
+     *
+     */
+    //TODO add simple action on the Case object and show system tests here
+    /**
     private static final Date OLD_SOLVE_DATE = System.today().addDays(-5);
     // below can be added to metadata to limit test execution time
     private static final Boolean RUN_STRESS_TEST = true;
@@ -274,4 +276,5 @@ public with sharing class Case_Case_STest {
             'Solve Date not set correctly on update'
         );
     }
+    **/
 }
