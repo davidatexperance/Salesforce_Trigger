@@ -26,20 +26,43 @@ I struggle with out to outline this since several of these go together
  
 ### Handler
 - This handles the flow control like the traditional Handler/Helper flow \n
-- Extends: 
-- Naming: <Trigger SObject>_Handler  example Contact_Handler
+- Extends: TriggerHandlerBase
+- Naming: \<Trigger SObject\>_Handler
+- Example: Contact_Handler
 - Notes: This is the controller, it handles only the flow control.  further work can be done to work specific execution of the trigger
   
 ### Helper
-
 - There is one helper for each SObject that is updated, that way you can easily see where additions/modifications and deletions go.
-- Extends:
-- Naming <Trigger SObject>_<SObject Modified>    Contact_Contact, Contact_Account
+- Extends: TriggerHelperBase
+- Naming \<Trigger SObject\>_\<SObject Modified\>
+- Example: Contact_Contact, Contact_Account
 - Note: writing of triggers is based upon the SObject updated, not the task given, so an issue might be handled with several classes. This may seem inefficient to the current programmer, but think of the long term and the future developers that will have to use your code.  This makes all future jobs easy peasy.
   
 ### Query
-
 - There is one query class with all static properties that are lazily sustantiated.
 - Extends:
-- Naming: <Trigger SObject>_Query                 Contact_Query
+- Naming: \<Trigger SObject\>_Query
+- Example: Contact_Query
 - Note: Make the base queries as simple and as open as possible.  Again this is for the next person.  You never want to filter a query already created and possibily screwing up other parts of the trigger.  Create a separate map that calls the base query and filters approprately for your work.  These secondary maps can be written in a way that further creates a single flow (Id based upon the trigger record and either a single return object or a list or map of tiems that need to be processed for that trigger record)
+
+### State
+- There is one state class with all static properties.
+- Extends:
+- Naming: \<Trigger SObject\>_State
+- Example: Contact_State
+- Note: Used to manage flow control.  Allows for monitoring and affecting flow control.  Best example can trigger run once actions.
+
+
+## Trigger Factory Framework
+
+| FileName | Type | Notes |
+| ------------- | ------------- | ------------- |
+| TriggerFactory.cls | Base Class | This is the Trigger Controller executed in the appropriate Trigger with TriggerFactory.createTriggerHandler(\<SOBJECT\>.getSObjectType); |
+| TriggerHandlerBase.cls | Virtual Class | This class is extended for each of the handlers.  You only need to override the TriggerStates you will implement. Each Trigger State calls the approprate TriggerHelpers. Note only flow control logic should be here. |
+| iTriggerHandler.cls | Interface | Interface used to implement virtual structure of Handlers |
+| TriggerHelperBase.cls | Virtual Class | This class is extended for each helper class. Note singlethreaded and bulk operations available for each Trigger States.  I suggest all efforts be used to use only single threaded methods. |
+| iTriggerHelper.cls | Interface | Interface used to implement virtual structure of Helpers |
+| iTriggerStateBase.cls | Virtual Class | This class is extended once for each class to facilitate flow control |
+| iTriggerState.cls | Interface | Interface used to implement virtual structure of TriggerState |
+| TriggerException.cls | Exception Class | Simple Exception class which could be built out to individual reporting requirements |
+| TriggerParameters.cls | Object Definition | Simple Data Object definition for Virtual Structure |
