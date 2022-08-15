@@ -5,7 +5,7 @@
  * NOTE FOR TEST COVERAGE
  * @author : david@experancepartners.com
  * @group :
- * @last modified on  : 08-05-2022
+ * @last modified on  : 08-15-2022
  * @last modified by  : david@experancepartners.com
  *  * 1.0   08-05-2022   david@experancepartners.com   Initial Version
  *
@@ -22,6 +22,16 @@ public without sharing class Account_Handler extends TriggerHandlerBase {
     }
 
     public override void bulkBefore() {
+        //common implementation, you only want to run the bulk before once!
+        Integer runCount = state.atBulkBefore();
+        if (state.atBulkBefore() > 1) {
+            System.debug(
+                'Exiting Account.BulkBefore, state has been called ' +
+                runCount +
+                ' times.'
+            );
+            return;
+        }
         accountHandler.bulkBefore();
     }
     public override void bulkAfter() {
